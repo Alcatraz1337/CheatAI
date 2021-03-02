@@ -1,0 +1,2 @@
+model_checkpoint_path: "NormalAgent-68055.ckpt"
+all_model_checkpoint_paths: "NormalAgent-68055.ckpt"

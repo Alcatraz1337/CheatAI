@@ -582,7 +582,7 @@ GameObject:
   - component: {fileID: 4997890993773030019}
   m_Layer: 10
   m_Name: NormalAgent
-  m_TagString: NomarlAgent
+  m_TagString: NormalAgent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -650,14 +650,14 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 12500
+  MaxStep: 200000
   speed: 5
   rotationSpeed: 3
   damagePerShot: 34
   shootingPoint: {fileID: 6874775875270659460}
   timeBetweenShots: 0.3
   range: 100
-  currentHealth: 100
+  startingHealth: 100
 --- !u!114 &280928522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -678,8 +678,8 @@ MonoBehaviour:
     VectorActionSpaceType: 1
   m_Model: {fileID: 0}
   m_InferenceDevice: 0
-  m_BehaviorType: 1
-  m_BehaviorName: My Behavior
+  m_BehaviorType: 0
+  m_BehaviorName: NormalAgent
   TeamId: 0
   m_UseChildSensors: 1
   m_UseChildActuators: 1
@@ -697,7 +697,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SensorName: RaysInFront
-  m_DetectableTags: []
+  m_DetectableTags:
+  - NormalAgent
+  - Wall
   m_RaysPerDirection: 8
   m_MaxRayDegrees: 60
   m_SphereCastRadius: 0.5
@@ -737,7 +739,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SensorName: RaysSideAndBack
-  m_DetectableTags: []
+  m_DetectableTags:
+  - NormalAgent
+  - Wall
   m_RaysPerDirection: 6
   m_MaxRayDegrees: 180
   m_SphereCastRadius: 0.5

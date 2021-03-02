@@ -1,0 +1,23 @@
+{
+    "NormalAgent": {
+        "checkpoints": [
+            {
+                "steps": 78392,
+                "file_path": "results\\NA4\\NormalAgent\\NormalAgent-78392.nn",
+                "reward": -0.3931396547704935,
+                "creation_time": 1614667489.4557018
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 78392,
+            "file_path": "results\\NA4\\NormalAgent.nn",
+            "reward": -0.3931396547704935,
+            "creation_time": 1614667489.4557018
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.1.0",
+        "mlagents_version": "0.21.1",
+        "tensorflow_version": "2.0.1"
+    }
+}

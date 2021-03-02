@@ -14,9 +14,10 @@ public class NormalAgent : Agent
     public float timeBetweenShots = 0.3f; // Need considering
 
     public int range = 100;
-    //public int startingHealth = 100;
-    int currentHealth = 100;
+    public int startingHealth = 100;
+    int currentHealth;
     Vector3 startingPosition;
+    Quaternion startingRotation;
     Rigidbody playerRigidbody;
     bool isDead = false;
     Vector3 movement;
@@ -34,18 +35,20 @@ public class NormalAgent : Agent
     public override void Initialize(){
         playerRigidbody = GetComponent<Rigidbody>();
         startingPosition = transform.position;
+        startingRotation = transform.rotation;
         shootableMask = LayerMask.GetMask("Shootable");
         gunLine = GetComponentInChildren<LineRenderer>();
         boxCollider = GetComponent<BoxCollider>();
         ResetPara = Academy.Instance.EnvironmentParameters;
-
+        currentHealth = startingHealth;
     }
 
     public override void OnEpisodeBegin()
     {
-        //playerRigidbody.position = startingPosition;
         playerRigidbody.transform.position = startingPosition;
-        Reset();
+        playerRigidbody.transform.rotation = startingRotation;
+        currentHealth = startingHealth;
+        timer = 0f;
     }
 
     public override void OnActionReceived(float[] vectorAction){
@@ -77,6 +80,7 @@ public class NormalAgent : Agent
         timer += Time.deltaTime;
         if(timer >= timeBetweenShots * efxDisplayTime)
             DisableEffects();
+        AddReward(-1f/MaxStep);
     }
     /* All the in-game functions here */
     void move_v(float h, float v){
@@ -105,6 +109,7 @@ public class NormalAgent : Agent
             }
             else{
                 Debug.Log("Missed!");
+                AddReward(-0.1f);
             }
             
             gunLine.SetPosition(1, shootHit.point);
@@ -121,7 +126,7 @@ public class NormalAgent : Agent
 
     public void TakeDamage(int damage, NormalAgent NA){
         Debug.Log(this + " Take " + damage + " damage from: " + NA);
-        AddReward(-0.33f);
+        AddReward(-0.2f);
         currentHealth -= damage;
         if(currentHealth <= 0){
             RegisterDeath();
@@ -130,7 +135,7 @@ public class NormalAgent : Agent
     }
 
     void RegisterDeath(){
-        AddReward(-1f);
+        AddReward(-0.5f);
         EndEpisode();
         Debug.Log(this + " Died!");
     }
@@ -139,10 +144,5 @@ public class NormalAgent : Agent
         AddReward(1f);
         EndEpisode();
         Debug.Log(this + " Killed one!");
-    }
-
-    void Reset(){
-        currentHealth = Mathf.FloorToInt(ResetPara.GetWithDefault("Health", 100f));
-        timer = ResetPara.GetWithDefault("Timer", 0f);
     }
 }

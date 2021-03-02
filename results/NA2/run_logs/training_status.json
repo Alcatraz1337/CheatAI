@@ -1,0 +1,29 @@
+{
+    "Health": {
+        "lesson_num": 0
+    },
+    "Timer": {
+        "lesson_num": 0
+    },
+    "NormalAgent": {
+        "checkpoints": [
+            {
+                "steps": 68055,
+                "file_path": "results\\NA2\\NormalAgent\\NormalAgent-68055.nn",
+                "reward": null,
+                "creation_time": 1614622316.6856308
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 68055,
+            "file_path": "results\\NA2\\NormalAgent.nn",
+            "reward": null,
+            "creation_time": 1614622316.6856308
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.1.0",
+        "mlagents_version": "0.21.1",
+        "tensorflow_version": "2.0.1"
+    }
+}
