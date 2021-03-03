@@ -2,17 +2,41 @@
     "NormalAgent": {
         "checkpoints": [
             {
-                "steps": 78392,
-                "file_path": "results\\NA4\\NormalAgent\\NormalAgent-78392.nn",
-                "reward": -0.3931396547704935,
-                "creation_time": 1614667489.4557018
+                "steps": 8499398,
+                "file_path": "results\\NA4\\NormalAgent\\NormalAgent-8499398.nn",
+                "reward": -1.0620494054164737,
+                "creation_time": 1614713406.6842108
+            },
+            {
+                "steps": 8999735,
+                "file_path": "results\\NA4\\NormalAgent\\NormalAgent-8999735.nn",
+                "reward": 1.7292534014166787,
+                "creation_time": 1614714287.4662743
+            },
+            {
+                "steps": 9499030,
+                "file_path": "results\\NA4\\NormalAgent\\NormalAgent-9499030.nn",
+                "reward": -1.133630212682944,
+                "creation_time": 1614715159.5010686
+            },
+            {
+                "steps": 9999283,
+                "file_path": "results\\NA4\\NormalAgent\\NormalAgent-9999283.nn",
+                "reward": 1.7769579101692548,
+                "creation_time": 1614716038.8413327
+            },
+            {
+                "steps": 10000283,
+                "file_path": "results\\NA4\\NormalAgent\\NormalAgent-10000283.nn",
+                "reward": 1.7769579101692548,
+                "creation_time": 1614716039.1946864
             }
         ],
         "final_checkpoint": {
-            "steps": 78392,
+            "steps": 10000283,
             "file_path": "results\\NA4\\NormalAgent.nn",
-            "reward": -0.3931396547704935,
-            "creation_time": 1614667489.4557018
+            "reward": 1.7769579101692548,
+            "creation_time": 1614716039.1946864
         }
     },
     "metadata": {

@@ -15,6 +15,7 @@ public class NormalAgent : Agent
 
     public int range = 100;
     public int startingHealth = 100;
+    public GameObject[] SpawnArea;
     int currentHealth;
     Vector3 startingPosition;
     Quaternion startingRotation;
@@ -45,8 +46,10 @@ public class NormalAgent : Agent
 
     public override void OnEpisodeBegin()
     {
-        playerRigidbody.transform.position = startingPosition;
-        playerRigidbody.transform.rotation = startingRotation;
+        //playerRigidbody.transform.position = startingPosition;
+        playerRigidbody.transform.position = RandomSpawn();
+        //playerRigidbody.transform.rotation = startingRotation;
+        playerRigidbody.transform.rotation = RandomRotation();
         currentHealth = startingHealth;
         timer = 0f;
     }
@@ -144,5 +147,22 @@ public class NormalAgent : Agent
         AddReward(1f);
         EndEpisode();
         Debug.Log(this + " Killed one!");
+    }
+
+    Vector3 RandomSpawn(){
+        int count = SpawnArea.Length;
+        Debug.Log(count);
+        int randomIndex = UnityEngine.Random.Range(0, count);
+        Vector3 origin = SpawnArea[randomIndex].transform.position;
+        Vector3 range = SpawnArea[randomIndex].transform.localScale / 2.0f;
+        Vector3 randomRange = new Vector3(UnityEngine.Random.Range(-range.x, range.x),
+                                        UnityEngine.Random.Range(-range.y, range.y),
+                                        UnityEngine.Random.Range(-range.z, range.z));
+        return origin + randomRange;
+    }
+
+    Quaternion RandomRotation(){
+        Quaternion r = new Quaternion(0, UnityEngine.Random.Range(0, 361), 0, 0);
+        return r;
     }
 }
