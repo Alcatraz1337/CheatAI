@@ -156,13 +156,13 @@ public class NormalAgent : Agent
         Vector3 origin = SpawnArea[randomIndex].transform.position;
         Vector3 range = SpawnArea[randomIndex].transform.localScale / 2.0f;
         Vector3 randomRange = new Vector3(UnityEngine.Random.Range(-range.x, range.x),
-                                        UnityEngine.Random.Range(-range.y, range.y),
+                                        0,
                                         UnityEngine.Random.Range(-range.z, range.z));
         return origin + randomRange;
     }
 
     Quaternion RandomRotation(){
-        Quaternion r = new Quaternion(0, UnityEngine.Random.Range(0, 361), 0, 0);
+        Quaternion r = Quaternion.Euler(0, UnityEngine.Random.Range(0, 361), 0);
         return r;
     }
 }
