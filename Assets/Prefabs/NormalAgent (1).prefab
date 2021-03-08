@@ -366,7 +366,7 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 200000
+  MaxStep: 300000
   speed: 5
   rotationSpeed: 3
   damagePerShot: 34
@@ -374,6 +374,13 @@ MonoBehaviour:
   timeBetweenShots: 0.3
   range: 100
   startingHealth: 100
+  SpawnArea:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  stepToMove: 500
+  campingDistance: 3
 --- !u!114 &8739836276649912918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,7 +399,7 @@ MonoBehaviour:
     VectorActionSize: 04000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
-  m_Model: {fileID: 5022602860645237092, guid: c18e3e989789ef84986e24e6700c486d, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: 9140832ed68736c4eb1c8f238befe376, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: NormalAgent

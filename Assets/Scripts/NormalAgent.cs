@@ -16,9 +16,11 @@ public class NormalAgent : Agent
     public int range = 100;
     public int startingHealth = 100;
     public GameObject[] SpawnArea;
+    public int stepToMove = 1000;
+    public float campingDistance = 5.0f;
     int currentHealth;
-    Vector3 startingPosition;
-    Quaternion startingRotation;
+    int stepToMoveDetector;
+    Vector3 lastPosition;
     Rigidbody playerRigidbody;
     bool isDead = false;
     Vector3 movement;
@@ -30,18 +32,13 @@ public class NormalAgent : Agent
     int shootableMask;
     // int floorMask; No need for agents
     LineRenderer gunLine;
-    EnvironmentParameters ResetPara;
     
     /* All engine functions here */
     public override void Initialize(){
         playerRigidbody = GetComponent<Rigidbody>();
-        startingPosition = transform.position;
-        startingRotation = transform.rotation;
         shootableMask = LayerMask.GetMask("Shootable");
         gunLine = GetComponentInChildren<LineRenderer>();
         boxCollider = GetComponent<BoxCollider>();
-        ResetPara = Academy.Instance.EnvironmentParameters;
-        currentHealth = startingHealth;
     }
 
     public override void OnEpisodeBegin()
@@ -51,6 +48,8 @@ public class NormalAgent : Agent
         //playerRigidbody.transform.rotation = startingRotation;
         playerRigidbody.transform.rotation = RandomRotation();
         currentHealth = startingHealth;
+        lastPosition = transform.position;
+        stepToMoveDetector = stepToMove;
         timer = 0f;
     }
 
@@ -83,6 +82,15 @@ public class NormalAgent : Agent
         timer += Time.deltaTime;
         if(timer >= timeBetweenShots * efxDisplayTime)
             DisableEffects();
+        if(stepToMoveDetector <= 0){ // Reward for camping
+            if(HasMoved())
+                AddReward(0.1f); // Reward for keep moving
+            else
+                AddReward(-0.2f); // Punishment for camping
+            stepToMoveDetector = stepToMove;
+            lastPosition = transform.position;
+        }
+        stepToMoveDetector--;
         AddReward(-1f/MaxStep);
     }
     /* All the in-game functions here */
@@ -151,7 +159,6 @@ public class NormalAgent : Agent
 
     Vector3 RandomSpawn(){
         int count = SpawnArea.Length;
-        Debug.Log(count);
         int randomIndex = UnityEngine.Random.Range(0, count);
         Vector3 origin = SpawnArea[randomIndex].transform.position;
         Vector3 range = SpawnArea[randomIndex].transform.localScale / 2.0f;
@@ -164,5 +171,13 @@ public class NormalAgent : Agent
     Quaternion RandomRotation(){
         Quaternion r = Quaternion.Euler(0, UnityEngine.Random.Range(0, 361), 0);
         return r;
+    }
+
+    bool HasMoved(){
+        Debug.Log(this + " dist moved since last check: " + Vector3.Distance(transform.position, lastPosition));
+        if(Vector3.Distance(transform.position, lastPosition) <= campingDistance)
+            return false;
+        else
+            return true;
     }
 }
