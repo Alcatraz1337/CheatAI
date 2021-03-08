@@ -84,9 +84,9 @@ public class NormalAgent : Agent
             DisableEffects();
         if(stepToMoveDetector <= 0){ // Reward for camping
             if(HasMoved())
-                AddReward(0.1f); // Reward for keep moving
+                AddReward(stepToMove / MaxStep); // Reward for keep moving
             else
-                AddReward(-0.2f); // Punishment for camping
+                AddReward(-0.1f); // Punishment for camping
             stepToMoveDetector = stepToMove;
             lastPosition = transform.position;
         }
@@ -114,12 +114,12 @@ public class NormalAgent : Agent
         if(Physics.Raycast(shootRay, out shootHit, range, shootableMask)){
             NormalAgent normalAgent = shootHit.collider.GetComponent<NormalAgent>();
             if(normalAgent != null){
-                Debug.Log("Hit!");
+                //Debug.Log("Hit!");
                 AddReward(0.33f);
                 normalAgent.TakeDamage(damagePerShot, this);
             }
             else{
-                Debug.Log("Missed!");
+                //Debug.Log("Missed!");
                 AddReward(-0.1f);
             }
             
@@ -127,7 +127,7 @@ public class NormalAgent : Agent
         }
         else{
             gunLine.SetPosition(1, shootRay.origin + shootRay.direction * range);
-            Debug.Log("Missed!");
+            //Debug.Log("Missed!");
         }
     }
 
@@ -136,7 +136,7 @@ public class NormalAgent : Agent
     }
 
     public void TakeDamage(int damage, NormalAgent NA){
-        Debug.Log(this + " Take " + damage + " damage from: " + NA);
+        //Debug.Log(this + " Take " + damage + " damage from: " + NA);
         AddReward(-0.2f);
         currentHealth -= damage;
         if(currentHealth <= 0){
@@ -148,13 +148,13 @@ public class NormalAgent : Agent
     void RegisterDeath(){
         AddReward(-0.5f);
         EndEpisode();
-        Debug.Log(this + " Died!");
+        //Debug.Log(this + " Died!");
     }
 
     void RegisterKill(){
         AddReward(1f);
         EndEpisode();
-        Debug.Log(this + " Killed one!");
+        //Debug.Log(this + " Killed one!");
     }
 
     Vector3 RandomSpawn(){

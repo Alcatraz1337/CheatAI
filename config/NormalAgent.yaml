@@ -20,7 +20,7 @@ behaviors:
         gamma: 0.99
         strength: 1.0
       curiosity:
-        strength: 0.02
+        strength: 0.05
         gamma: 0.99
         encoding_size: 256
         learning_rate: 3.0e-4
