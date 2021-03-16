@@ -680,10 +680,10 @@ MonoBehaviour:
   m_BrainParameters:
     VectorObservationSize: 2
     NumStackedVectorObservations: 1
-    VectorActionSize: 04000000
+    VectorActionSize: 02000000030000000300000003000000
     VectorActionDescriptions: []
-    VectorActionSpaceType: 1
-  m_Model: {fileID: 5022602860645237092, guid: ab1ef793a7e048f478243f4e4c9c3725, type: 3}
+    VectorActionSpaceType: 0
+  m_Model: {fileID: 0}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: NormalAgent

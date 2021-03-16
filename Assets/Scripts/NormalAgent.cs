@@ -4,6 +4,9 @@ using UnityEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.Sensors;
 using Unity.Mathematics;
+using UnityEngine.Serialization;
+using System.Linq;
+using System;
 
 public class NormalAgent : Agent
 {
@@ -32,6 +35,13 @@ public class NormalAgent : Agent
     int shootableMask;
     // int floorMask; No need for agents
     LineRenderer gunLine;
+    const int k_NoAction = 0;
+    const int k_Up = 1;
+    const int k_Down = 2;
+    const int k_Right = 1;
+    const int k_Left = 2;
+    const int k_TurnRight = 1;
+    const int k_TurnLeft = 2;
     
     /* All engine functions here */
     public override void Initialize(){
@@ -54,10 +64,70 @@ public class NormalAgent : Agent
     }
 
     public override void OnActionReceived(float[] vectorAction){
-        if(Mathf.FloorToInt(vectorAction[0]) >= 1 && timer >= timeBetweenShots)
+        int d_shoot = Mathf.FloorToInt(vectorAction[0]);
+        int d_moveVertical = Mathf.FloorToInt(vectorAction[1]);
+        int d_moveHorizontal = Mathf.FloorToInt(vectorAction[2]);
+        int d_turn = Mathf.FloorToInt(vectorAction[3]);
+
+        int i_Horizontal; // input element for move_v(H,);
+        int i_Vertical; // input element for move_v(, V);
+        int i_turn; // iuput element for turnring(t);
+        
+        if(d_shoot == 1 && timer >= timeBetweenShots)
             Shoot();
-        move_v(vectorAction[1], vectorAction[2]);
-        turning(vectorAction[3]);
+        else if(d_shoot != 1 && d_shoot != 0)
+            throw new ArgumentException("Invalid action value at shoot");
+        else
+            ;
+        //if(Mathf.FloorToInt(vectorAction[0]) >= 1 && timer >= timeBetweenShots)
+        //    Shoot();
+        
+        switch(d_moveHorizontal){
+            case k_NoAction:
+                i_Horizontal = 0;
+                break;
+            case k_Right:
+                i_Horizontal = 1;
+                break;
+            case k_Left:
+                i_Horizontal = -1;
+                break;
+            default:
+                throw new ArgumentException("Invalid action value at d_moveHorizontal");
+        }
+
+        switch(d_moveVertical){
+            case k_NoAction:
+                i_Vertical = 0;
+                break;
+            case k_Up:
+                i_Vertical = 1;
+                break;
+            case k_Down:
+                i_Vertical = -1;
+                break;
+            default:
+                throw new ArgumentException("Invalid action value at d_moveVertical");
+        }
+        
+        switch(d_turn){
+            case k_NoAction:
+                i_turn = 0;
+                break;
+            case k_TurnRight:
+                i_turn = 1;
+                break;
+            case k_TurnLeft:
+                i_turn = -1;
+                break;
+            default:
+                throw new ArgumentException("Invalid action value at d_turn");
+        }
+        
+        move_v(i_Horizontal, i_Vertical);
+        //move_v(vectorAction[1], vectorAction[2]);
+        turning(i_turn);
+        // turning(vectorAction[3]);
     }
 
     public override void CollectObservations(VectorSensor sensor)
@@ -68,14 +138,32 @@ public class NormalAgent : Agent
 
     public override void Heuristic(float[] actionsOut)
     {
-        actionsOut[0] = (Input.GetKey(KeyCode.Space) && timer >= timeBetweenShots) ? 1f : 0f;
-        actionsOut[1] = Input.GetAxis("Horizontal");
-        actionsOut[2] = Input.GetAxis("Vertical");
-        actionsOut[3] = 0f;
+        actionsOut[0] = k_NoAction;
+        actionsOut[1] = k_NoAction;
+        actionsOut[2] = k_NoAction;
+        actionsOut[3] = k_NoAction;
+        if(Input.GetKey(KeyCode.Space))
+            actionsOut[0] = 1;
+        if(Input.GetKey(KeyCode.W))
+            actionsOut[1] = k_Up;
+        if(Input.GetKey(KeyCode.S))
+            actionsOut[1] = k_Down;        
+        if(Input.GetKey(KeyCode.A))
+            actionsOut[2] = k_Left;
+        if(Input.GetKey(KeyCode.D))
+            actionsOut[2] = k_Right;
         if(Input.GetKey(KeyCode.Q))
-            actionsOut[3] = -1f;
+            actionsOut[3] = k_TurnLeft;
         if(Input.GetKey(KeyCode.E))
-            actionsOut[3] = 1f;
+            actionsOut[3] = k_TurnRight;        
+        // actionsOut[0] = (Input.GetKey(KeyCode.Space) && timer >= timeBetweenShots) ? 1f : 0f;
+        // actionsOut[1] = Input.GetAxis("Horizontal");
+        // actionsOut[2] = Input.GetAxis("Vertical");
+        // actionsOut[3] = 0f;
+        // if(Input.GetKey(KeyCode.Q))
+        //     actionsOut[3] = -1f;
+        // if(Input.GetKey(KeyCode.E))
+        //     actionsOut[3] = 1f;
     }
 
     void FixedUpdate(){
