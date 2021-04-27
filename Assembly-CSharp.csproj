@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{2f67f5a5-5247-4bb1-97d6-c750d9540dc0}</ProjectGuid>
+    <ProjectGuid>{5ed700ca-54c0-923f-7fd2-05874af43133}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -41,9 +41,11 @@
      <Compile Include="Assets\Scripts\BluePlayerMovement.cs" />
      <Compile Include="Assets\Scripts\BluePlayerShooting.cs" />
      <Compile Include="Assets\Scripts\BlueTeamSpawn.cs" />
+     <Compile Include="Assets\Scripts\CameraFollow.cs" />
      <Compile Include="Assets\Scripts\DrawSpawnArea.cs" />
      <Compile Include="Assets\Scripts\Enemy.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
+     <Compile Include="Assets\Scripts\MainMenu.cs" />
      <Compile Include="Assets\Scripts\NormalAgent.cs" />
      <None Include="Assets\Effects\Projector\Shaders\ProjectorLight.shader" />
      <None Include="Assets\Effects\PostRenderEffects\AngerOverlay.shader" />
@@ -231,31 +233,31 @@
         <HintPath>C:/Program Files/Unity/Editor/2019.4.9f1/Editor/Data/Managed/UnityEditor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
-        <HintPath>E:/UnityProjects/CheatAI-main/Library/PackageCache/com.unity.analytics@3.3.5/Unity.Analytics.Editor.dll</HintPath>
+        <HintPath>E:/UnityProjects/CheatAI/Library/PackageCache/com.unity.analytics@3.3.5/Unity.Analytics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
-        <HintPath>E:/UnityProjects/CheatAI-main/Library/PackageCache/com.unity.analytics@3.3.5/Unity.Analytics.Tracker.dll</HintPath>
+        <HintPath>E:/UnityProjects/CheatAI/Library/PackageCache/com.unity.analytics@3.3.5/Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.StandardEvents">
-        <HintPath>E:/UnityProjects/CheatAI-main/Library/PackageCache/com.unity.analytics@3.3.5/AnalyticsStandardEvents/Unity.Analytics.StandardEvents.dll</HintPath>
+        <HintPath>E:/UnityProjects/CheatAI/Library/PackageCache/com.unity.analytics@3.3.5/AnalyticsStandardEvents/Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Google.Protobuf">
-        <HintPath>E:/UnityProjects/CheatAI-main/Library/PackageCache/com.unity.barracuda@1.1.1-preview/Barracuda/Runtime/Plugins/ProtoBuffer/Google.Protobuf.dll</HintPath>
+        <HintPath>E:/UnityProjects/CheatAI/Library/PackageCache/com.unity.barracuda@1.1.1-preview/Barracuda/Runtime/Plugins/ProtoBuffer/Google.Protobuf.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst.Unsafe">
-        <HintPath>E:/UnityProjects/CheatAI-main/Library/PackageCache/com.unity.burst@1.3.4/Unity.Burst.Unsafe.dll</HintPath>
+        <HintPath>E:/UnityProjects/CheatAI/Library/PackageCache/com.unity.burst@1.3.4/Unity.Burst.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.IO.Abstractions">
-        <HintPath>E:/UnityProjects/CheatAI-main/Library/PackageCache/com.unity.ml-agents@1.5.0-preview/Plugins/System.IO.Abstractions.dll</HintPath>
+        <HintPath>E:/UnityProjects/CheatAI/Library/PackageCache/com.unity.ml-agents@1.5.0-preview/Plugins/System.IO.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="System.IO.Abstractions.TestingHelpers">
-        <HintPath>E:/UnityProjects/CheatAI-main/Library/PackageCache/com.unity.ml-agents@1.5.0-preview/Plugins/System.IO.Abstractions.TestingHelpers.dll</HintPath>
+        <HintPath>E:/UnityProjects/CheatAI/Library/PackageCache/com.unity.ml-agents@1.5.0-preview/Plugins/System.IO.Abstractions.TestingHelpers.dll</HintPath>
     </Reference>
     <Reference Include="Grpc.Core">
-        <HintPath>E:/UnityProjects/CheatAI-main/Library/PackageCache/com.unity.ml-agents@1.5.0-preview/Plugins/ProtoBuffer/Grpc.Core.dll</HintPath>
+        <HintPath>E:/UnityProjects/CheatAI/Library/PackageCache/com.unity.ml-agents@1.5.0-preview/Plugins/ProtoBuffer/Grpc.Core.dll</HintPath>
     </Reference>
     <Reference Include="System.Interactive.Async">
-        <HintPath>E:/UnityProjects/CheatAI-main/Library/PackageCache/com.unity.ml-agents@1.5.0-preview/Plugins/ProtoBuffer/System.Interactive.Async.dll</HintPath>
+        <HintPath>E:/UnityProjects/CheatAI/Library/PackageCache/com.unity.ml-agents@1.5.0-preview/Plugins/ProtoBuffer/System.Interactive.Async.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
         <HintPath>C:/Program Files/Unity/Editor/2019.4.9f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
@@ -603,106 +605,106 @@
         <HintPath>C:/Program Files/Unity/Editor/2019.4.9f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
-        <HintPath>E:/UnityProjects/CheatAI-main/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+        <HintPath>E:/UnityProjects/CheatAI/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Monetization">
-        <HintPath>E:/UnityProjects/CheatAI-main/Library/ScriptAssemblies/UnityEngine.Monetization.dll</HintPath>
+        <HintPath>E:/UnityProjects/CheatAI/Library/ScriptAssemblies/UnityEngine.Monetization.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Barracuda.MacBLAS">
-        <HintPath>E:/UnityProjects/CheatAI-main/Library/ScriptAssemblies/Unity.Barracuda.MacBLAS.dll</HintPath>
+        <HintPath>E:/UnityProjects/CheatAI/Library/ScriptAssemblies/Unity.Barracuda.MacBLAS.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst">
-        <HintPath>E:/UnityProjects/CheatAI-main/Library/ScriptAssemblies/Unity.Burst.dll</HintPath>
+        <HintPath>E:/UnityProjects/CheatAI/Library/ScriptAssemblies/Unity.Burst.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.multiplayer-hlapi.Editor">
-        <HintPath>E:/UnityProjects/CheatAI-main/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Editor.dll</HintPath>
+        <HintPath>E:/UnityProjects/CheatAI/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-        <HintPath>E:/UnityProjects/CheatAI-main/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+        <HintPath>E:/UnityProjects/CheatAI/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Barracuda.Editor">
-        <HintPath>E:/UnityProjects/CheatAI-main/Library/ScriptAssemblies/Unity.Barracuda.Editor.dll</HintPath>
+        <HintPath>E:/UnityProjects/CheatAI/Library/ScriptAssemblies/Unity.Barracuda.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst.Editor">
-        <HintPath>E:/UnityProjects/CheatAI-main/Library/ScriptAssemblies/Unity.Burst.Editor.dll</HintPath>
+        <HintPath>E:/UnityProjects/CheatAI/Library/ScriptAssemblies/Unity.Burst.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Advertisements">
-        <HintPath>E:/UnityProjects/CheatAI-main/Library/ScriptAssemblies/UnityEngine.Advertisements.dll</HintPath>
+        <HintPath>E:/UnityProjects/CheatAI/Library/ScriptAssemblies/UnityEngine.Advertisements.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-        <HintPath>E:/UnityProjects/CheatAI-main/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+        <HintPath>E:/UnityProjects/CheatAI/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-        <HintPath>E:/UnityProjects/CheatAI-main/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+        <HintPath>E:/UnityProjects/CheatAI/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-        <HintPath>E:/UnityProjects/CheatAI-main/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+        <HintPath>E:/UnityProjects/CheatAI/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Barracuda">
-        <HintPath>E:/UnityProjects/CheatAI-main/Library/ScriptAssemblies/Unity.Barracuda.dll</HintPath>
+        <HintPath>E:/UnityProjects/CheatAI/Library/ScriptAssemblies/Unity.Barracuda.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-        <HintPath>E:/UnityProjects/CheatAI-main/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+        <HintPath>E:/UnityProjects/CheatAI/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Barracuda.iOSBLAS">
-        <HintPath>E:/UnityProjects/CheatAI-main/Library/ScriptAssemblies/Unity.Barracuda.iOSBLAS.dll</HintPath>
+        <HintPath>E:/UnityProjects/CheatAI/Library/ScriptAssemblies/Unity.Barracuda.iOSBLAS.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.multiplayer-weaver.Editor">
-        <HintPath>E:/UnityProjects/CheatAI-main/Library/ScriptAssemblies/com.unity.multiplayer-weaver.Editor.dll</HintPath>
+        <HintPath>E:/UnityProjects/CheatAI/Library/ScriptAssemblies/com.unity.multiplayer-weaver.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.XR.LegacyInputHelpers">
-        <HintPath>E:/UnityProjects/CheatAI-main/Library/ScriptAssemblies/UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
+        <HintPath>E:/UnityProjects/CheatAI/Library/ScriptAssemblies/UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ML-Agents.CommunicatorObjects">
-        <HintPath>E:/UnityProjects/CheatAI-main/Library/ScriptAssemblies/Unity.ML-Agents.CommunicatorObjects.dll</HintPath>
+        <HintPath>E:/UnityProjects/CheatAI/Library/ScriptAssemblies/Unity.ML-Agents.CommunicatorObjects.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-        <HintPath>E:/UnityProjects/CheatAI-main/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+        <HintPath>E:/UnityProjects/CheatAI/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Barracuda.BurstBLAS">
-        <HintPath>E:/UnityProjects/CheatAI-main/Library/ScriptAssemblies/Unity.Barracuda.BurstBLAS.dll</HintPath>
+        <HintPath>E:/UnityProjects/CheatAI/Library/ScriptAssemblies/Unity.Barracuda.BurstBLAS.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Mathematics">
-        <HintPath>E:/UnityProjects/CheatAI-main/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
+        <HintPath>E:/UnityProjects/CheatAI/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Sprite.Editor">
-        <HintPath>E:/UnityProjects/CheatAI-main/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+        <HintPath>E:/UnityProjects/CheatAI/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Editor">
-        <HintPath>E:/UnityProjects/CheatAI-main/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
+        <HintPath>E:/UnityProjects/CheatAI/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.SpatialTracking">
-        <HintPath>E:/UnityProjects/CheatAI-main/Library/ScriptAssemblies/UnityEditor.SpatialTracking.dll</HintPath>
+        <HintPath>E:/UnityProjects/CheatAI/Library/ScriptAssemblies/UnityEditor.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.SpatialTracking">
-        <HintPath>E:/UnityProjects/CheatAI-main/Library/ScriptAssemblies/UnityEngine.SpatialTracking.dll</HintPath>
+        <HintPath>E:/UnityProjects/CheatAI/Library/ScriptAssemblies/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Mathematics.Editor">
-        <HintPath>E:/UnityProjects/CheatAI-main/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
+        <HintPath>E:/UnityProjects/CheatAI/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-        <HintPath>E:/UnityProjects/CheatAI-main/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+        <HintPath>E:/UnityProjects/CheatAI/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.DataPrivacy">
-        <HintPath>E:/UnityProjects/CheatAI-main/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+        <HintPath>E:/UnityProjects/CheatAI/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.XR.LegacyInputHelpers">
-        <HintPath>E:/UnityProjects/CheatAI-main/Library/ScriptAssemblies/UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
+        <HintPath>E:/UnityProjects/CheatAI/Library/ScriptAssemblies/UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ML-Agents.Editor">
-        <HintPath>E:/UnityProjects/CheatAI-main/Library/ScriptAssemblies/Unity.ML-Agents.Editor.dll</HintPath>
+        <HintPath>E:/UnityProjects/CheatAI/Library/ScriptAssemblies/Unity.ML-Agents.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ML-Agents">
-        <HintPath>E:/UnityProjects/CheatAI-main/Library/ScriptAssemblies/Unity.ML-Agents.dll</HintPath>
+        <HintPath>E:/UnityProjects/CheatAI/Library/ScriptAssemblies/Unity.ML-Agents.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-        <HintPath>E:/UnityProjects/CheatAI-main/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+        <HintPath>E:/UnityProjects/CheatAI/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Barracuda.ONNX">
-        <HintPath>E:/UnityProjects/CheatAI-main/Library/ScriptAssemblies/Unity.Barracuda.ONNX.dll</HintPath>
+        <HintPath>E:/UnityProjects/CheatAI/Library/ScriptAssemblies/Unity.Barracuda.ONNX.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.multiplayer-hlapi.Runtime">
-        <HintPath>E:/UnityProjects/CheatAI-main/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Runtime.dll</HintPath>
+        <HintPath>E:/UnityProjects/CheatAI/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Runtime.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
