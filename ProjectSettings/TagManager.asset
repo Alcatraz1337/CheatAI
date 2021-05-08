@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Wall
   - NormalAgent
+  - SpawnArea
   layers:
   - Default
   - TransparentFX

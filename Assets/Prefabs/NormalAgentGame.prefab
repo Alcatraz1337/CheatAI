@@ -575,13 +575,13 @@ GameObject:
   - component: {fileID: 6154248512121582642}
   - component: {fileID: 2367955483876855607}
   - component: {fileID: 1455179179}
-  - component: {fileID: 2302239750476577277}
+  - component: {fileID: 8366403247686968202}
   - component: {fileID: 280928522}
   - component: {fileID: 1298522078}
   - component: {fileID: 1298522079}
   - component: {fileID: 4997890993773030019}
   m_Layer: 10
-  m_Name: Player
+  m_Name: NormalAgentGame
   m_TagString: NormalAgent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -635,7 +635,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 0
---- !u!114 &2302239750476577277
+--- !u!114 &8366403247686968202
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -680,7 +680,7 @@ MonoBehaviour:
     VectorActionSize: 02000000030000000300000003000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
-  m_Model: {fileID: 5022602860645237092, guid: b1b26e40e8e1f734da0443c8ba2d4231, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: 43d1f1be7d4bffe4595e9a4224a58055, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: NormalAgent
