@@ -204,10 +204,14 @@ public class NormalAgentGame : Agent
 
         if(Physics.Raycast(shootRay, out shootHit, range, shootableMask)){
             NormalAgentGame normalAgentGame = shootHit.collider.GetComponent<NormalAgentGame>();
+            PlayerHealth playerHealth = shootHit.collider.GetComponent<PlayerHealth>();
             if(normalAgentGame != null){
                 //Debug.Log("Hit!");
                 AddReward(0.33f);
                 normalAgentGame.TakeDamage(damagePerShot, this);
+            }
+            else if(playerHealth != null){
+                playerHealth.TakeDamage(damagePerShot);
             }
             else{
                 //Debug.Log("Missed!");
@@ -233,6 +237,17 @@ public class NormalAgentGame : Agent
         if(currentHealth <= 0){
             RegisterDeath();
             NA.RegisterKill();
+        }
+    }
+
+    public void TakeDamageFromPlayer(int damage, PlayerShooting player)
+    {
+        AddReward(-0.2f);
+        currentHealth -= damage;
+        if(currentHealth <= 0)
+        {
+            RegisterDeath();
+            player.RegisterKill();
         }
     }
 

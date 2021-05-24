@@ -4,30 +4,45 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject[] Agents = new GameObject[4];
+    public GameObject[] Agents = new GameObject[3];
+    public GameObject Player;
 
     public GameObject[] SpawnArea;
     List<int> randomNumbers = new List<int>();
 
+    PlayerHealth playerHealth;
+
     void Start(){
+        playerHealth = Player.GetComponent<PlayerHealth>();
         SpawnArea = GameObject.FindGameObjectsWithTag("SpawnArea");
         randomNumbers = DistributeSpawnArea();
-        for(int i = 0; i < 4; i++){
+        for(int i = 0; i < Agents.Length + 1; i++){
             Quaternion spawnRot = Quaternion.Euler(0, UnityEngine.Random.Range(0, 361), 0);
             Vector3 origin = SpawnArea[randomNumbers[i]].transform.position;
             Vector3 range = SpawnArea[randomNumbers[i]].transform.localScale / 2.0f;
             Vector3 randomRange = new Vector3(UnityEngine.Random.Range(-range.x, range.x),
                                         0,
                                         UnityEngine.Random.Range(-range.z, range.z));
-            Instantiate(Agents[i], origin + randomRange, spawnRot);
-            
+            if (i == Agents.Length)
+            {
+                Player.transform.position = origin + randomRange;
+                Player.transform.rotation = spawnRot;
+            }
+            else
+                Instantiate(Agents[i], origin + randomRange, spawnRot);
         }
+
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (playerHealth.readyToRespawn) // If the player is ready to respawn...
+        {
+            Player.transform.position = RandomSpawn();
+            playerHealth.readyToRespawn = false;
+            playerHealth.currentHealth = 100;
+        }
     }
 
     List<int> DistributeSpawnArea(){
