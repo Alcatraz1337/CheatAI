@@ -39,9 +39,11 @@ public class GameManager : MonoBehaviour
     {
         if (playerHealth.readyToRespawn) // If the player is ready to respawn...
         {
+            // Player respawn
+            Player.SetActive(true);
             Player.transform.position = RandomSpawn();
+            playerHealth.currentHealth = playerHealth.startingHealth;
             playerHealth.readyToRespawn = false;
-            playerHealth.currentHealth = 100;
         }
     }
 

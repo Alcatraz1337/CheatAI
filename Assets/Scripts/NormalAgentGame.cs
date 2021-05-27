@@ -281,7 +281,7 @@ public class NormalAgentGame : Agent
     }
 
     bool HasMoved(){
-        Debug.Log(this + " dist moved since last check: " + Vector3.Distance(transform.position, lastPosition));
+        //Debug.Log(this + " dist moved since last check: " + Vector3.Distance(transform.position, lastPosition));
         if(Vector3.Distance(transform.position, lastPosition) <= campingDistance)
             return false;
         else

@@ -79,6 +79,7 @@
     <Compile Include="Assets\Scripts\PlayerHealth.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\PlayerShooting.cs" />
+    <Compile Include="Assets\Scripts\UIDirectionControl.cs" />
     <None Include="Assets\Effects\Projector\Shaders\ProjectorLight.shader" />
     <None Include="Assets\Effects\PostRenderEffects\AngerOverlay.shader" />
     <Reference Include="UnityEngine">

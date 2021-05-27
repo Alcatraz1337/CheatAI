@@ -12,6 +12,10 @@ public class PlayerHealth : MonoBehaviour
     public float respawnTime = 3f; // Default time to respawn
     public Color flashColor = new Color(1f, 0f, 0f, 0.1f); // Default damgage color.
     public bool readyToRespawn = false; // Flag for ready to be spawn;
+    public Slider healthSlider;
+    public Image fillImage;
+    public Color fullHealthColor = Color.green;
+    public Color zeroHealthColor = Color.red;
 
     PlayerShooting playerShooting;
     PlayerMovement playerMovement;
@@ -24,6 +28,7 @@ public class PlayerHealth : MonoBehaviour
         playerShooting = GetComponent<PlayerShooting>();
         playerMovement = GetComponent<PlayerMovement>();
         currentHealth = startingHealth;
+        SetHealthUI();
         readyToRespawn = false;
     }
 
@@ -54,24 +59,33 @@ public class PlayerHealth : MonoBehaviour
         isDamaged = true;
         currentHealth -= amout;
 
+        SetHealthUI();
+
         if(currentHealth <= 0 && !isDead)
         {
             Death();
         }
     }
 
+    public void SetHealthUI()
+    {
+        healthSlider.value = currentHealth; // Set slider value to current health value
+        fillImage.color = Color.Lerp(zeroHealthColor, fullHealthColor, currentHealth / startingHealth);
+    }
     void Death()
     {
         isDead = true;
         playerShooting.DisableEffects();
         playerMovement.enabled = false;
-
+        Debug.Log("Player is dead!");
     }
 
     void Respawn()
     {
+        deathTimer = 0f; // Reset respawn timer
         isDead = false;
         playerMovement.enabled = true;
         readyToRespawn = true;
+        Debug.Log("Ready to respawn!");
     }
 }
