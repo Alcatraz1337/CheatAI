@@ -3842,6 +3842,16 @@ PrefabInstance:
       propertyPath: damageImage
       value: 
       objectReference: {fileID: 561160829}
+    - target: {fileID: 2262483812762269690, guid: b71e61a8612a7ea4aa328539f26df2f8,
+        type: 3}
+      propertyPath: healthSlider
+      value: 
+      objectReference: {fileID: 917565073}
+    - target: {fileID: 2262483812762269690, guid: b71e61a8612a7ea4aa328539f26df2f8,
+        type: 3}
+      propertyPath: fillImage
+      value: 
+      objectReference: {fileID: 1486832151}
     - target: {fileID: 6154248512121582642, guid: b71e61a8612a7ea4aa328539f26df2f8,
         type: 3}
       propertyPath: m_LocalPosition.x
