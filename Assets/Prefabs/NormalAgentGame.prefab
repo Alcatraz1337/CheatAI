@@ -680,7 +680,7 @@ MonoBehaviour:
     VectorActionSize: 02000000030000000300000003000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
-  m_Model: {fileID: 5022602860645237092, guid: 43d1f1be7d4bffe4595e9a4224a58055, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: 83c54e90e4c845943b5f9f18ac1a8a0d, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: NormalAgent

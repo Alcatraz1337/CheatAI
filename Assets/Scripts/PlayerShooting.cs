@@ -7,6 +7,7 @@ public class PlayerShooting : MonoBehaviour
     public int damagePerShot = 34;
     public float timeBetweenShots = 0.3f;
     public float range = 100f;
+    public int score = 0;
 
     float timer;
     Ray shootRay;
@@ -19,6 +20,7 @@ public class PlayerShooting : MonoBehaviour
     {
         shootableMask = LayerMask.GetMask("Shootable");
         gunLine = GetComponentInChildren<LineRenderer>();
+        score = 0;
     }
 
     // Update is called once per frame
@@ -45,6 +47,7 @@ public class PlayerShooting : MonoBehaviour
     public void RegisterKill()
     {
         Debug.Log("Player Killed one!");
+        score++;
     }
 
     void Shoot()

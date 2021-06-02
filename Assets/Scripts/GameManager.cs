@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,12 +9,19 @@ public class GameManager : MonoBehaviour
     public GameObject Player;
 
     public GameObject[] SpawnArea;
+    public Slider playerScoreSlider;
     List<int> randomNumbers = new List<int>();
 
     PlayerHealth playerHealth;
+    PlayerShooting playerShooting;
+
+    int playerScore;
 
     void Start(){
-        playerHealth = Player.GetComponent<PlayerHealth>();
+        playerHealth = Player.GetComponent<PlayerHealth>(); // Get player health
+        playerShooting = Player.GetComponent<PlayerShooting>(); // Get player shooting component
+        playerScore = playerShooting.score; // Get player kill count from PlayerShooting component
+        playerScoreSlider.value = playerShooting.score; // Set value of player kill counter slider
         SpawnArea = GameObject.FindGameObjectsWithTag("SpawnArea");
         randomNumbers = DistributeSpawnArea();
         for(int i = 0; i < Agents.Length + 1; i++){
@@ -45,6 +53,7 @@ public class GameManager : MonoBehaviour
             playerHealth.currentHealth = playerHealth.startingHealth;
             playerHealth.readyToRespawn = false;
         }
+        UpdateScore();
     }
 
     List<int> DistributeSpawnArea(){
@@ -69,5 +78,11 @@ public class GameManager : MonoBehaviour
                                         0,
                                         UnityEngine.Random.Range(-range.z, range.z));
         return origin + randomRange;
+    }
+
+    void UpdateScore()
+    {
+        playerScore = playerShooting.score;
+        playerScoreSlider.value = playerShooting.score;
     }
 }
