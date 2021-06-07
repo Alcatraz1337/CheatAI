@@ -21,7 +21,6 @@ public class PlayerHealth : MonoBehaviour
     PlayerMovement playerMovement;
     bool isDead; // Whether player is dead
     bool isDamaged; // Whether player is damaged
-    float deathTimer = 0f; // Timer for respawn countdown
 
     private void Awake()
     {
@@ -46,15 +45,15 @@ public class PlayerHealth : MonoBehaviour
 
         if (isDead)
         {
-            deathTimer += Time.deltaTime; // Countdown;
-            if (deathTimer >= respawnTime) // Respawn
+            //deathTimer += Time.deltaTime; // Countdown;
+            //if (deathTimer >= respawnTime) // Respawn
                 Respawn();
         }
 
         isDamaged = false;
     }
 
-    public void TakeDamage(int amout)
+    public void TakeDamage(int amout, NormalAgentGame NAG)
     {
         isDamaged = true;
         currentHealth -= amout;
@@ -63,6 +62,7 @@ public class PlayerHealth : MonoBehaviour
 
         if(currentHealth <= 0 && !isDead)
         {
+            NAG.RegisterKill();
             Death();
         }
     }
@@ -82,7 +82,7 @@ public class PlayerHealth : MonoBehaviour
 
     void Respawn()
     {
-        deathTimer = 0f; // Reset respawn timer
+        //deathTimer = 0f; // Reset respawn timer
         isDead = false;
         playerMovement.enabled = true;
         readyToRespawn = true;

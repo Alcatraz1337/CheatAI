@@ -10,18 +10,23 @@ public class GameManager : MonoBehaviour
 
     public GameObject[] SpawnArea;
     public Slider playerScoreSlider;
+    public Slider highetsScoreSlider;
     List<int> randomNumbers = new List<int>();
 
     PlayerHealth playerHealth;
     PlayerShooting playerShooting;
 
     int playerScore;
+    int highestScore;
 
     void Start(){
         playerHealth = Player.GetComponent<PlayerHealth>(); // Get player health
         playerShooting = Player.GetComponent<PlayerShooting>(); // Get player shooting component
         playerScore = playerShooting.score; // Get player kill count from PlayerShooting component
-        playerScoreSlider.value = playerShooting.score; // Set value of player kill counter slider
+        playerScoreSlider.value = playerShooting.score; // Set value of player score slider
+        highestScore = 0; // Set value of highest score in the game.
+        highetsScoreSlider.value = highestScore; // Set the value of slider.
+        
         SpawnArea = GameObject.FindGameObjectsWithTag("SpawnArea");
         randomNumbers = DistributeSpawnArea();
         for(int i = 0; i < Agents.Length + 1; i++){
@@ -52,8 +57,10 @@ public class GameManager : MonoBehaviour
             Player.transform.position = RandomSpawn();
             playerHealth.currentHealth = playerHealth.startingHealth;
             playerHealth.readyToRespawn = false;
+            playerHealth.SetHealthUI();
         }
         UpdateScore();
+        
     }
 
     List<int> DistributeSpawnArea(){
@@ -84,5 +91,15 @@ public class GameManager : MonoBehaviour
     {
         playerScore = playerShooting.score;
         playerScoreSlider.value = playerShooting.score;
+        NormalAgentGame[] allAgents = GameObject.FindObjectsOfType<NormalAgentGame>();
+        // Get the highest score in the game.
+        foreach(NormalAgentGame agent in allAgents)
+        {
+            highestScore = (agent.score > highestScore) ? agent.score : highestScore;
+        }
+        highestScore = (playerShooting.score > highestScore) ? playerShooting.score : highestScore;
+        highetsScoreSlider.value = highestScore;
+        Debug.Log("Highest Score: " + highestScore);
     }
+
 }

@@ -436,7 +436,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bc6ce7aa62303bc4d9f86c3ae40726b3, type: 2}
+  - {fileID: 2100000, guid: 2be53f63759a17c4491eea74bae2c72e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -581,7 +581,7 @@ GameObject:
   - component: {fileID: 1298522079}
   - component: {fileID: 4997890993773030019}
   m_Layer: 10
-  m_Name: NormalAgentGame
+  m_Name: NormalAgentRed
   m_TagString: NormalAgent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -662,6 +662,7 @@ MonoBehaviour:
   SpawnArea: []
   stepToMove: 500
   campingDistance: 3
+  score: 0
 --- !u!114 &280928522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -707,7 +708,7 @@ MonoBehaviour:
   m_RaysPerDirection: 6
   m_MaxRayDegrees: 60
   m_SphereCastRadius: 0.5
-  m_RayLength: 80
+  m_RayLength: 50
   m_RayLayerMask:
     serializedVersion: 2
     m_Bits: 1555
@@ -749,7 +750,7 @@ MonoBehaviour:
   m_RaysPerDirection: 4
   m_MaxRayDegrees: 180
   m_SphereCastRadius: 0.5
-  m_RayLength: 80
+  m_RayLength: 50
   m_RayLayerMask:
     serializedVersion: 2
     m_Bits: 4294967291

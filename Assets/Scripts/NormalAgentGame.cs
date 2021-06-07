@@ -22,15 +22,15 @@ public class NormalAgentGame : Agent
     public GameObject[] SpawnArea;
     public int stepToMove = 1000;
     public float campingDistance = 5.0f;
+    public int score = 0;
+
     int currentHealth;
     int stepToMoveDetector;
     Vector3 lastPosition;
     Rigidbody playerRigidbody;
     bool isDead = false;
     Vector3 movement;
-    BoxCollider boxCollider;
     float timer;
-    float respawnTimer = 0f;
     float efxDisplayTime = 0.2f;
     Ray shootRay;
     RaycastHit shootHit;
@@ -50,11 +50,11 @@ public class NormalAgentGame : Agent
         playerRigidbody = GetComponent<Rigidbody>();
         shootableMask = LayerMask.GetMask("Shootable");
         gunLine = GetComponentInChildren<LineRenderer>();
-        boxCollider = GetComponent<BoxCollider>();
         SpawnArea = GameObject.FindGameObjectsWithTag("SpawnArea");
         //playerRigidbody.transform.position = RandomSpawn();
         //playerRigidbody.transform.rotation = RandomRotation();
         currentHealth = startingHealth;
+        score = 0;
         lastPosition = transform.position;
         stepToMoveDetector = stepToMove;
         timer = 0f;
@@ -127,9 +127,9 @@ public class NormalAgentGame : Agent
                 throw new ArgumentException("Invalid action value at d_turn");
         }
         
-        move_v(i_Horizontal, i_Vertical);
+        Move_v(i_Horizontal, i_Vertical);
         //move_v(vectorAction[1], vectorAction[2]);
-        turning(i_turn);
+        Turning(i_turn);
         // turning(vectorAction[3]);
     }
 
@@ -183,15 +183,23 @@ public class NormalAgentGame : Agent
         }
         stepToMoveDetector--;
         AddReward(-1f/MaxStep);
+
+        if (isDead)
+        {
+            currentHealth = startingHealth;
+            playerRigidbody.transform.position = RandomSpawn();
+            playerRigidbody.transform.rotation = RandomRotation();
+            isDead = false;
+        }
     }
     /* All the in-game functions here */
-    void move_v(float h, float v){
+    void Move_v(float h, float v){
         movement.Set(h, 0, v);
         movement = movement.normalized * speed * Time.deltaTime;
         playerRigidbody.MovePosition(transform.position + movement);
     }
 
-    void turning(float t){
+    void Turning(float t){
         transform.Rotate(Vector3.up, t * rotationSpeed);
     }
 
@@ -208,10 +216,10 @@ public class NormalAgentGame : Agent
             if(normalAgentGame != null){
                 //Debug.Log("Hit!");
                 AddReward(0.33f);
-                normalAgentGame.TakeDamage(damagePerShot, this);
+                normalAgentGame.TakeDamage(damagePerShot, this); // Harming other agents
             }
             else if(playerHealth != null){
-                playerHealth.TakeDamage(damagePerShot);
+                playerHealth.TakeDamage(damagePerShot, this); // Harming player
             }
             else{
                 //Debug.Log("Missed!");
@@ -230,13 +238,13 @@ public class NormalAgentGame : Agent
         gunLine.enabled = false;
     }
 
-    public void TakeDamage(int damage, NormalAgentGame NA){
-        //Debug.Log(this + " Take " + damage + " damage from: " + NA);
+    public void TakeDamage(int damage, NormalAgentGame NAG){
+        //Debug.Log(this + " Take " + damage + " damage from: " + NAG);
         AddReward(-0.2f);
         currentHealth -= damage;
         if(currentHealth <= 0){
             RegisterDeath();
-            NA.RegisterKill();
+            NAG.RegisterKill();
         }
     }
 
@@ -258,8 +266,10 @@ public class NormalAgentGame : Agent
         //Debug.Log(this + " Died!");
     }
 
-    void RegisterKill(){
+    public void RegisterKill(){
         AddReward(1f);
+        score++; // Successfully killed a target.
+        Debug.Log(this + " killed one, score: " + score);
         //EndEpisode();
         //Debug.Log(this + " Killed one!");
     }
