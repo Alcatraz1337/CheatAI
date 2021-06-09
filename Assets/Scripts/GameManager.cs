@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 
     void Start(){
         playerHealth = Player.GetComponent<PlayerHealth>(); // Get player health
-        playerShooting = Player.GetComponent<PlayerShooting>(); // Get player shooting component
+        playerShooting = Player.GetComponentInChildren<PlayerShooting>(); // Get player shooting component
         playerScore = playerShooting.score; // Get player kill count from PlayerShooting component
         playerScoreSlider.value = playerShooting.score; // Set value of player score slider
         highestScore = 0; // Set value of highest score in the game.
