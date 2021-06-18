@@ -2337,7 +2337,6 @@ MonoBehaviour:
   - {fileID: 8356088999963634277, guid: 4b2f4cf153e349b4088ffdb70f4a1679, type: 3}
   - {fileID: 8356088999963634277, guid: c34a6ac53c8c3d44bbee9b8f39ff1ccf, type: 3}
   Player: {fileID: 1910282726}
-  timer: {fileID: 47208215}
   SpawnArea:
   - {fileID: 969652800}
   - {fileID: 17676033}

@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public GameObject[] Agents = new GameObject[3];
     public GameObject Player;
+    public CountdownTimer timer;
 
     public GameObject[] SpawnArea;
     public Slider playerScoreSlider;
@@ -92,14 +93,13 @@ public class GameManager : MonoBehaviour
         playerScore = playerShooting.score;
         playerScoreSlider.value = playerShooting.score;
         NormalAgentGame[] allAgents = GameObject.FindObjectsOfType<NormalAgentGame>();
-        // Get the highest score in the game.
+        // Get the highest score within all the agents.
         foreach(NormalAgentGame agent in allAgents)
         {
             highestScore = (agent.score > highestScore) ? agent.score : highestScore;
         }
-        highestScore = (playerShooting.score > highestScore) ? playerShooting.score : highestScore;
         highetsScoreSlider.value = highestScore;
-        Debug.Log("Highest Score: " + highestScore);
+        //Debug.Log("Highest Score: " + highestScore);
     }
 
 }

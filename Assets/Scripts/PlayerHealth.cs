@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int startingHealth = 100; // Default starting health
-    public int currentHealth;
+    public float startingHealth = 100f; // Default starting health
+    public float currentHealth;
+    public float regenHealthTime = 3f; // Time required to start regenerate health
+    public float regenHealthRate = 50f; // Health regenerated per second
     public Image damageImage;
     public float flashSpeed = 5f; // Damage image flash speed
     public float respawnTime = 3f; // Default time to respawn
@@ -19,16 +21,19 @@ public class PlayerHealth : MonoBehaviour
 
     PlayerShooting playerShooting;
     PlayerMovement playerMovement;
+    float regenTimer = 0f; // Timer to track when to regenrate health
     bool isDead; // Whether player is dead
     bool isDamaged; // Whether player is damaged
-
+    
     private void Awake()
     {
-        playerShooting = GetComponent<PlayerShooting>();
+        playerShooting = GetComponentInChildren<PlayerShooting>();
         playerMovement = GetComponent<PlayerMovement>();
         currentHealth = startingHealth;
         SetHealthUI();
         readyToRespawn = false;
+        isDead = false;
+        isDamaged = false;
     }
 
     // Update is called once per frame
@@ -41,13 +46,23 @@ public class PlayerHealth : MonoBehaviour
         else
         {
             damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
+            regenTimer += Time.deltaTime;
+        }
+
+        if(regenTimer >= regenHealthTime && !isDead && currentHealth < startingHealth)
+        {
+            Debug.Log("regenerating health! + " + (regenHealthRate * Time.deltaTime));
+            currentHealth += regenHealthRate * Time.deltaTime;
+            if (currentHealth > startingHealth)
+                currentHealth = startingHealth;
+            SetHealthUI();
         }
 
         if (isDead)
         {
             //deathTimer += Time.deltaTime; // Countdown;
             //if (deathTimer >= respawnTime) // Respawn
-                Respawn();
+            Respawn();
         }
 
         isDamaged = false;
@@ -56,6 +71,7 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(int amout, NormalAgentGame NAG)
     {
         isDamaged = true;
+        regenTimer = 0f;
         currentHealth -= amout;
 
         SetHealthUI();
