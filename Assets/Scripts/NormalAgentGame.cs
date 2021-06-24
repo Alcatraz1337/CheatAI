@@ -13,6 +13,7 @@ public class NormalAgentGame : Agent
     public float speed = 3f;
     public float rotationSpeed = 3f;
     public int damagePerShot = 34;
+    public int cheatDamagePerShot = 100;
     public Transform shootingPoint;
     public float timeBetweenShots = 0.3f; // Need considering
     public float timeBetweenSpawn = 3f;
@@ -23,6 +24,7 @@ public class NormalAgentGame : Agent
     public int stepToMove = 1000;
     public float campingDistance = 5.0f;
     public int score = 0;
+    public bool isCheating; // Flag for cheating.
 
     int currentHealth;
     int stepToMoveDetector;
@@ -37,6 +39,8 @@ public class NormalAgentGame : Agent
     int shootableMask;
     // int floorMask; No need for agents
     LineRenderer gunLine;
+    AudioSource gunAudio;
+
     const int k_NoAction = 0;
     const int k_Up = 1;
     const int k_Down = 2;
@@ -50,14 +54,14 @@ public class NormalAgentGame : Agent
         playerRigidbody = GetComponent<Rigidbody>();
         shootableMask = LayerMask.GetMask("Shootable");
         gunLine = GetComponentInChildren<LineRenderer>();
+        gunAudio = GetComponent<AudioSource>();
         SpawnArea = GameObject.FindGameObjectsWithTag("SpawnArea");
-        //playerRigidbody.transform.position = RandomSpawn();
-        //playerRigidbody.transform.rotation = RandomRotation();
         currentHealth = startingHealth;
         score = 0;
         lastPosition = transform.position;
         stepToMoveDetector = stepToMove;
         timer = 0f;
+        isCheating = false;
     }
 
     public override void OnEpisodeBegin()
@@ -67,6 +71,7 @@ public class NormalAgentGame : Agent
     }
 
     public override void OnActionReceived(float[] vectorAction){
+        // Input methods of discrete action space
         int d_shoot = Mathf.FloorToInt(vectorAction[0]);
         int d_moveVertical = Mathf.FloorToInt(vectorAction[1]);
         int d_moveHorizontal = Mathf.FloorToInt(vectorAction[2]);
@@ -82,8 +87,6 @@ public class NormalAgentGame : Agent
             throw new ArgumentException("Invalid action value at shoot");
         else
             ;
-        //if(Mathf.FloorToInt(vectorAction[0]) >= 1 && timer >= timeBetweenShots)
-        //    Shoot();
         
         switch(d_moveHorizontal){
             case k_NoAction:
@@ -128,8 +131,12 @@ public class NormalAgentGame : Agent
         }
         
         Move_v(i_Horizontal, i_Vertical);
-        //move_v(vectorAction[1], vectorAction[2]);
         Turning(i_turn);
+        
+        // Input methods of continuous action space
+        //if(Mathf.FloorToInt(vectorAction[0]) >= 1 && timer >= timeBetweenShots)
+        //    Shoot();
+        //move_v(vectorAction[1], vectorAction[2]);
         // turning(vectorAction[3]);
     }
 
@@ -206,6 +213,7 @@ public class NormalAgentGame : Agent
     void Shoot(){
         timer = 0f;
         gunLine.enabled = true;
+        gunAudio.Play();
         gunLine.SetPosition(0, shootingPoint.position);
         shootRay.origin = shootingPoint.position;
         shootRay.direction = transform.forward;
@@ -216,9 +224,13 @@ public class NormalAgentGame : Agent
             if(normalAgentGame != null){
                 //Debug.Log("Hit!");
                 AddReward(0.33f);
+                if (isCheating)
+                    damagePerShot = cheatDamagePerShot;
                 normalAgentGame.TakeDamage(damagePerShot, this); // Harming other agents
             }
             else if(playerHealth != null){
+                if (isCheating)
+                    damagePerShot = cheatDamagePerShot;
                 playerHealth.TakeDamage(damagePerShot, this); // Harming player
             }
             else{
@@ -241,6 +253,8 @@ public class NormalAgentGame : Agent
     public void TakeDamage(int damage, NormalAgentGame NAG){
         //Debug.Log(this + " Take " + damage + " damage from: " + NAG);
         AddReward(-0.2f);
+        if (isCheating)
+            damage = 0;
         currentHealth -= damage;
         if(currentHealth <= 0){
             RegisterDeath();
@@ -251,6 +265,8 @@ public class NormalAgentGame : Agent
     public void TakeDamageFromPlayer(int damage, PlayerShooting player)
     {
         AddReward(-0.2f);
+        if (isCheating)
+            damage = 0;
         currentHealth -= damage;
         if(currentHealth <= 0)
         {

@@ -39,6 +39,7 @@ public class CountdownTimer : MonoBehaviour
     {
         timeToDisplay += 1;
 
+        // Set format to display time on screen
         float minutes = Mathf.FloorToInt(timeToDisplay / 60);
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
 

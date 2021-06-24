@@ -9,17 +9,19 @@ public class PlayerShooting : MonoBehaviour
     public float range = 100f;
     public int score = 0;
 
-    float timer;
+    float timer; // A timer to determine when to fire
+    float efxDisplayTime = 0.2f; // timer for displaying gun line efx
+    int shootableMask;
     Ray shootRay;
     RaycastHit shootHit;
-    int shootableMask;
     LineRenderer gunLine;
-    float efxDisplayTime = 0.2f;
+    AudioSource gunAudio;
 
     void Awake()
     {
         shootableMask = LayerMask.GetMask("Shootable");
         gunLine = GetComponentInChildren<LineRenderer>();
+        gunAudio = GetComponent<AudioSource>();
         score = 0;
     }
 
@@ -53,6 +55,8 @@ public class PlayerShooting : MonoBehaviour
     void Shoot()
     {
         timer = 0f;
+
+        gunAudio.Play();
 
         gunLine.enabled = true;
         gunLine.SetPosition(0, transform.position);

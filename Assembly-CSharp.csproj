@@ -65,15 +65,12 @@
   <ItemGroup>
     <Compile Include="Assets\Effects\PostRenderEffects\FaerieAnger.cs" />
     <Compile Include="Assets\ReproProjectWizard\ReproProjectSettings.cs" />
-    <Compile Include="Assets\Scripts\BluePlayerHealth.cs" />
-    <Compile Include="Assets\Scripts\BluePlayerMovement.cs" />
-    <Compile Include="Assets\Scripts\BluePlayerShooting.cs" />
-    <Compile Include="Assets\Scripts\BlueTeamSpawn.cs" />
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
+    <Compile Include="Assets\Scripts\CheaterManager.cs" />
     <Compile Include="Assets\Scripts\CountdownTimer.cs" />
     <Compile Include="Assets\Scripts\DrawSpawnArea.cs" />
-    <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\GameOverScreen.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\NormalAgent.cs" />
     <Compile Include="Assets\Scripts\NormalAgentGame.cs" />

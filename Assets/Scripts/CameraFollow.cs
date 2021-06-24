@@ -14,7 +14,7 @@ public class CameraFollow : MonoBehaviour
             player = GameObject.Find("Player");
         else{
             Vector3 targetPosition = player.transform.position + offset;
-            Vector3 smoothedPostion = Vector3.Lerp(transform.position, targetPosition, smoothSpeed * Time.deltaTime);
+            Vector3 smoothedPostion = Vector3.Lerp(transform.position, targetPosition, smoothSpeed * Time.fixedDeltaTime);
             transform.position = smoothedPostion;
             transform.rotation = camRotation;
         }

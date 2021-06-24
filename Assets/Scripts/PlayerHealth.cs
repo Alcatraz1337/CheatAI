@@ -18,9 +18,12 @@ public class PlayerHealth : MonoBehaviour
     public Image fillImage;
     public Color fullHealthColor = Color.green;
     public Color zeroHealthColor = Color.red;
+    public AudioClip deathClip;
+    public AudioClip hurtClip;
 
     PlayerShooting playerShooting;
     PlayerMovement playerMovement;
+    AudioSource playerAudio;
     float regenTimer = 0f; // Timer to track when to regenrate health
     bool isDead; // Whether player is dead
     bool isDamaged; // Whether player is damaged
@@ -29,6 +32,7 @@ public class PlayerHealth : MonoBehaviour
     {
         playerShooting = GetComponentInChildren<PlayerShooting>();
         playerMovement = GetComponent<PlayerMovement>();
+        playerAudio = GetComponent<AudioSource>();
         currentHealth = startingHealth;
         SetHealthUI();
         readyToRespawn = false;
@@ -62,6 +66,7 @@ public class PlayerHealth : MonoBehaviour
         {
             //deathTimer += Time.deltaTime; // Countdown;
             //if (deathTimer >= respawnTime) // Respawn
+            gameObject.SetActive(false);
             Respawn();
         }
 
@@ -70,9 +75,11 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int amout, NormalAgentGame NAG)
     {
-        isDamaged = true;
-        regenTimer = 0f;
+        isDamaged = true; // set the damaged flag to true
+        regenTimer = 0f; // reset the timer to regenerate health
         currentHealth -= amout;
+
+        playerAudio.Play(); // play the hurt sound efx
 
         SetHealthUI();
 
@@ -92,6 +99,9 @@ public class PlayerHealth : MonoBehaviour
     {
         isDead = true;
         playerShooting.DisableEffects();
+        // set the audio source to play the death clip and play it.
+        playerAudio.clip = deathClip; 
+        playerAudio.Play();
         playerMovement.enabled = false;
         Debug.Log("Player is dead!");
     }
@@ -99,6 +109,7 @@ public class PlayerHealth : MonoBehaviour
     void Respawn()
     {
         //deathTimer = 0f; // Reset respawn timer
+        playerAudio.clip = hurtClip;
         isDead = false;
         playerMovement.enabled = true;
         readyToRespawn = true;
