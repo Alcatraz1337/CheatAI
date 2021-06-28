@@ -53,6 +53,7 @@ public class PlayerHealth : MonoBehaviour
             regenTimer += Time.deltaTime;
         }
 
+        // Regenerate health for player if is not hurt in seconds.
         if(regenTimer >= regenHealthTime && !isDead && currentHealth < startingHealth)
         {
             Debug.Log("regenerating health! + " + (regenHealthRate * Time.deltaTime));
@@ -73,7 +74,7 @@ public class PlayerHealth : MonoBehaviour
         isDamaged = false;
     }
 
-    public void TakeDamage(int amout, NormalAgentGame NAG)
+    public void TakeDamage(float amout, NormalAgentGame NAG)
     {
         isDamaged = true; // set the damaged flag to true
         regenTimer = 0f; // reset the timer to regenerate health

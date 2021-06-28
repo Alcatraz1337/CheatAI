@@ -659,11 +659,11 @@ MonoBehaviour:
   shootingPoint: {fileID: 6874775875270659460}
   timeBetweenShots: 0.3
   timeBetweenSpawn: 3
+  regenHealthTime: 3
+  regenHealthRate: 50
   range: 100
   startingHealth: 100
   SpawnArea: []
-  stepToMove: 500
-  campingDistance: 3
   score: 0
   isCheating: 0
 --- !u!114 &280928522
@@ -679,12 +679,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 2
+    VectorObservationSize: 3
     NumStackedVectorObservations: 1
-    VectorActionSize: 02000000030000000300000003000000
+    VectorActionSize: 04000000
     VectorActionDescriptions: []
-    VectorActionSpaceType: 0
-  m_Model: {fileID: 5022602860645237092, guid: 4fc1e5b9506944646888d43db8e82739, type: 3}
+    VectorActionSpaceType: 1
+  m_Model: {fileID: 5022602860645237092, guid: e1bce454ec8a62044ab913f299e51751, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: NormalAgent

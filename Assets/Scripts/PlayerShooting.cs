@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
 {
-    public int damagePerShot = 34;
+    public float damagePerShot = 34f;
     public float timeBetweenShots = 0.3f;
     public float range = 100f;
     public int score = 0;
