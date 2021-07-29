@@ -1,0 +1,47 @@
+{
+    "NormalAgent": {
+        "checkpoints": [
+            {
+                "steps": 8499987,
+                "file_path": "results\\NA11\\NormalAgent\\NormalAgent-8499987.nn",
+                "reward": 0.11607142857142858,
+                "creation_time": 1624306572.6699374
+            },
+            {
+                "steps": 8999908,
+                "file_path": "results\\NA11\\NormalAgent\\NormalAgent-8999908.nn",
+                "reward": -0.08333333333333333,
+                "creation_time": 1624307143.7262497
+            },
+            {
+                "steps": 9499993,
+                "file_path": "results\\NA11\\NormalAgent\\NormalAgent-9499993.nn",
+                "reward": -0.07575757575757576,
+                "creation_time": 1624307977.1705177
+            },
+            {
+                "steps": 9999994,
+                "file_path": "results\\NA11\\NormalAgent\\NormalAgent-9999994.nn",
+                "reward": -0.04716981132075472,
+                "creation_time": 1624308696.21637
+            },
+            {
+                "steps": 10000105,
+                "file_path": "results\\NA11\\NormalAgent\\NormalAgent-10000105.nn",
+                "reward": -0.04672897196261682,
+                "creation_time": 1624308696.6300683
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 10000105,
+            "file_path": "results\\NA11\\NormalAgent.nn",
+            "reward": -0.04672897196261682,
+            "creation_time": 1624308696.6300683
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.1.0",
+        "mlagents_version": "0.21.1",
+        "tensorflow_version": "2.0.1"
+    }
+}
