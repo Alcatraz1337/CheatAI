@@ -63,7 +63,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Effects\PostRenderEffects\FaerieAnger.cs" />
     <Compile Include="Assets\ReproProjectWizard\ReproProjectSettings.cs" />
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\CheaterManager.cs" />
@@ -78,8 +77,6 @@
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\PlayerShooting.cs" />
     <Compile Include="Assets\Scripts\UIDirectionControl.cs" />
-    <None Include="Assets\Effects\Projector\Shaders\ProjectorLight.shader" />
-    <None Include="Assets\Effects\PostRenderEffects\AngerOverlay.shader" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Editor/2019.4.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

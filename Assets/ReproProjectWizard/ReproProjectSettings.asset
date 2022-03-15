@@ -12,9 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae15025ea90555442bb8b8b138089890, type: 3}
   m_Name: ReproProjectSettings
   m_EditorClassIdentifier: 
-  ProjectName: 
-  ProjectPath: 
-  OpenProject: 0
-  TextureScale: 0
-  InputFiles: []
+  ProjectName: LUO-Yiming-CheatedGame
+  ProjectPath: E:/UnityProjects/Repro/CheatedGame
+  OpenProject: 1
+  TextureScale: 1
+  InputFiles:
+  - AssetType: 1
+    AssetPath: Assets/Scenes/MainMenu.unity
+  - AssetType: 1
+    AssetPath: Assets/Scenes/GamePlay.unity
+  - AssetType: 1
+    AssetPath: Assets/Scenes/GamePlayCheat.unity
   ProjectFiles: []
